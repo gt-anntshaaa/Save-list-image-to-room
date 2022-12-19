@@ -25,8 +25,6 @@ class MainActivity : AppCompatActivity(){
         if (it.resultCode == Activity.RESULT_OK){
             // get Data user
             val user = it.data?.getParcelableExtra<User>("data_user")
-
-
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +32,7 @@ class MainActivity : AppCompatActivity(){
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        userAdapter = UserAdapter()
+        userAdapter = UserAdapter(userViewModel)
         userViewModel.allUser.observe(this, Observer {list ->
             list.let {
                 userAdapter.submitList(it)
